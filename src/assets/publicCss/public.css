@@ -1,0 +1,19 @@
+body,div,ul,ol,dl,li,span,p{
+    margin: 0;
+    padding: 0;
+}
+ul li,ol li,dl li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.clear:after{
+    content: '.';
+    overflow: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+    line-height: 0;
+    visibility: hidden;
+}
