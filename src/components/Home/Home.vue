@@ -17,12 +17,14 @@
                 </my-li>
             </my-ul>
         </div>
+        <wx-footer></wx-footer>
     </div>
 </template>
 
 <script>
-import MyUl from '../Common/MyUl'
-import MyLi from '../Common/MyLi'
+import MyUl from '../Common/MyUl';
+import MyLi from '../Common/MyLi';
+import wxFooter from '../wxFooter';
 export default {
     data(){
         return{
@@ -68,7 +70,8 @@ export default {
     },
     components:{
         MyUl,
-        MyLi
+        MyLi,
+        wxFooter
     }
 }
 </script>

@@ -1,8 +1,8 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
-import router from './router'
+// import wx from './wx'
+import wxRouter from './router/wxRouter'
 
 // 配置axios
 import Axios from 'axios'
@@ -32,9 +32,23 @@ Vue.use(MintUI)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
-})
+// new Vue({
+//   el: '#wx',
+//   router,
+//   components: { wx },
+//   template: '<wx/>'
+// })
+
+// 判断用户终端是PC还是移动端，移动端则跳到微信H5首页
+const ua = navigator.userAgent.toLowerCase()
+if (/iphone|ipad|ipod/.test(ua) || /android/.test(ua)) {
+  var router = wxRouter
+  new Vue({
+    router
+  }).$mount('#start')
+} else {
+  const router = pcRouter
+  new Vue({
+    router
+  }).$mount('#start')
+}
