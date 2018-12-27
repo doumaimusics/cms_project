@@ -25,6 +25,12 @@ import './assets/publicCss/public.css'
 // Vue.component(MyUl.name,MyUl);
 // Vue.component(MyLi.name,MyLi);
 
+// 定义全局moment全局日期过滤器
+import Moment from 'moment';
+Vue.filter('convertTime', function(data,formatStr){
+   return Moment(data).format(formatStr);
+})
+
 
 //  安装插件 注册全局组件
 Vue.use(MintUI)
