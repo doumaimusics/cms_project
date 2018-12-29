@@ -18,26 +18,16 @@ import 'mint-ui/lib/style.css';
 // 引入自己css
 import './assets/publicCss/public.css'
 
-// 引入自己的ul和li组件
-// import MyUl from './components/Common/MyUl';
-// import MyLi from './components/Common/MyLi';
-// 注册全局组件
-// Vue.component(MyUl.name,MyUl);
-// Vue.component(MyLi.name,MyLi);
+ // 引入公用过滤器
+import './common/publicFilter/publicFilte'
+
+
 
 
 //  安装插件 注册全局组件
 Vue.use(MintUI)
 
 Vue.config.productionTip = false
-
-/* eslint-disable no-new */
-// new Vue({
-//   el: '#wx',
-//   router,
-//   components: { wx },
-//   template: '<wx/>'
-// })
 
 // 判断用户终端是PC还是移动端，移动端则跳到微信H5首页
 const ua = navigator.userAgent.toLowerCase()

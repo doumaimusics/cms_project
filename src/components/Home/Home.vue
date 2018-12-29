@@ -7,13 +7,13 @@
         </mt-swipe>
 
         <!-- 九宫格 -->
-        <div class="grid">
+        <div class="grid clear">
             <my-ul>
                 <my-li v-for="(item,index) in listBg" :key="index">
-                    <a href="">
+                    <router-link :to="{path:item.url}">
                         <span :style="{background:'url('+item.bg+')'}"></span>
-                        <p>{{index+1}}</p>
-                    </a>
+                        <p>{{item.text}}</p>
+                    </router-link>
                 </my-li>
             </my-ul>
         </div>
@@ -28,31 +28,40 @@ import wxFooter from '../wxFooter';
 export default {
     data(){
         return{
-           imgs:[],   // 轮播图片
-           listBg:[
+           imgs:[
                {
+                   img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545820775451&di=2caf475debf3d6da05e0d88cb5d53fdb&imgtype=0&src=http%3A%2F%2Fimg03.tooopen.com%2Fuploadfile%2Fdowns%2Fimages%2F20110714%2Fsy_20110714135215645030.jpg'
+               },
+               {
+                   img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545820775451&di=e1dae4624bbbef3c2b7a85273278a901&imgtype=0&src=http%3A%2F%2Fpic1.nipic.com%2F2008-12-30%2F200812308231244_2.jpg'
+               }
+
+           ],   // 轮播图片
+           listBg:[
+                {
                    bg:require('../../assets/img/grit/icon_01.png'),
-                   text:'1'
+                   text:'新闻咨询',
+                   url:'/news/list'
                 },
                 {
                    bg:require('../../assets/img/grit/icon_02.png'),
-                   text:'2'
+                   text:'图文分享'
                 },
                 {
                    bg:require('../../assets/img/grit/icon_03.png'),
-                   text:'3'
+                   text:'商品展示'
                 },
                 {
                    bg:require('../../assets/img/grit/icon_04.png'),
-                   text:'4'
+                   text:'留言反馈'
                 },
                 {
                    bg:require('../../assets/img/grit/icon_05.png'),
-                   text:'5'
+                   text:'搜索资讯'
                 },
                 {
                    bg:require('../../assets/img/grit/icon_06.png'),
-                   text:'6'
+                   text:'联系我们'
                 },
 
            ]
@@ -61,8 +70,8 @@ export default {
     created(){
         this.$axios.get('getlunbo')
         .then(res => {
-            this.imgs = res.data.message;
-            console.log(this.imgs)
+            // this.imgs = res.data.message;
+            // console.log(this.imgs)
         })
         .catch(err => {
             console.log('轮播图获取异常')
@@ -87,19 +96,31 @@ export default {
             }
         }
         .grid{
-                    text-align: center;
-                    a{
-                        width: 100%;
-                        height: 100%;
-                        display: block;
-                        span{
-                            width: 45px;
-                            height: 45px;
-                            display: block;
-                            margin: 0 auto;
-                            background-size: cover !important;
-                        }
-                    }
+            text-align: center;
+            margin-top: .4rem;
+            background: #fff;
+            padding-top: .4rem;
+            li{
+                margin-bottom: .2rem;
+            }
+            a{
+                width: 100%;
+                height: 100%;
+                display: block;
+               
+                span{
+                    width: 45px;
+                    height: 45px;
+                    display: block;
+                    margin: 0 auto;
+                    background-size: cover !important;
+                    margin-bottom: .266667rem;
+                }
+            }
+            p{
+              font-size: .346667rem;  
+              color: #333;
+            }
         }
     }
 </style>
