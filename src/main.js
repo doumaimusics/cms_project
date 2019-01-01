@@ -9,6 +9,19 @@ import Axios from 'axios'
 // 配置公共url
 Axios.defaults.baseURL = "http://www.sinya.online/api/"
 Vue.prototype.$axios = Axios
+// 配置请求拦截器，显示loading图标
+Axios.interceptors.request.use(function(config) {
+  MintUI.Indicator.open({
+    text:'玩命加载中...'
+  })
+  return config;
+});
+// 配置响应拦截器，关闭loading图标
+Axios.interceptors.response.use(function(response){
+  // response.config类似 上面config
+  MintUI.Indicator.close();
+  return response;
+})
 
 // 配置MintUI
 import MintUI from 'mint-ui';
@@ -29,6 +42,12 @@ import './assets/publicCss/public.css'
 import Moment from 'moment';
 Vue.filter('convertTime', function(data,formatStr){
    return Moment(data).format(formatStr);
+})
+
+
+// 处理字符串过长的过滤器
+Vue.filter('convertStr',function(str,count){
+    return str ? str.substring(0,count)+'....' : '';
 })
 
 

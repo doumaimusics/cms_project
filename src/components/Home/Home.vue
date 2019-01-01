@@ -1,11 +1,7 @@
 <template>
   <div id="home">
-    <mt-swipe :auto="4000">
-      <mt-swipe-item v-for="(img,index) in imgs" :key="index">
-        <img :src="img.img" alt>
-      </mt-swipe-item>
-    </mt-swipe>
-
+   
+    <my-swipe url="getlunbo"></my-swipe>
     <!-- 九宫格 -->
     <div class="grid">
       <my-ul>
@@ -23,6 +19,7 @@
 <script>
 import MyUl from "../Common/MyUl";
 import MyLi from "../Common/MyLi";
+import MySwipe from '../Common/mySwipe';
 export default {
   data() {
     return {
@@ -47,8 +44,8 @@ export default {
           bg: require("../../assets/img/grit/icon_03.png"),
           text: "商品展示",
           router: {
-            url: "photoList",
-            params: { categoryId: 0 }
+            name: "goodsList",
+            query:{id:1}
           }
         },
         {
@@ -79,19 +76,12 @@ export default {
     };
   },
   created() {
-    this.$axios
-      .get("getlunbo")
-      .then(res => {
-        this.imgs = res.data.message;
-        console.log(this.imgs);
-      })
-      .catch(err => {
-        console.log("轮播图获取异常");
-      });
+    
   },
   components: {
     MyUl,
-    MyLi
+    MyLi,
+    MySwipe
   }
 };
 </script>
@@ -100,12 +90,6 @@ export default {
 #home {
   position: relative;
   overflow: hidden;
-  .mint-swipe {
-    height: 200px;
-    img {
-      width: 100%;
-    }
-  }
   .grid {
     text-align: center;
     a {

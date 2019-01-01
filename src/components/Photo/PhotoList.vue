@@ -39,7 +39,16 @@ export default {
   methods: {
 
       category(id){
-         this.$axios.get('getimages/' + id).then( res => {
+        console.log(id)
+         this.$router.push({
+           name:'photoList',
+           params:{
+             categoryId:id
+           }
+         });
+      },
+      loadImgById(id){   //  通过ID回去数据
+          this.$axios.get('getimages/' + id).then( res => {
              this.imgsData = res.data.message;
              if(this.imgsData.length==0){
                  this.$toast({
@@ -63,20 +72,20 @@ export default {
           }).catch( err => {
               console.log("出错")
           })
-      }
+      },
   },
   components: {
     navBar
   },
   beforeRouteUpdate(to, from, next){   // 路由复用，但参数改变触发；参数指的是：query和params
      console.log(to);
-     this.category(to.params.categoryId);
+     this.loadImgById(to.params.categoryId);
      next();
   },
   created() {
     this.getGor();// 分类信息
     let categoryId = this.$route.params.categoryId;   // 获取路由参数
-    this.category(categoryId);
+    this.loadImgById(categoryId);
 
   }
 };
@@ -84,11 +93,11 @@ export default {
 
 <style lang="scss" scoped>
 .title_list{
-    width: auto;
-    height: 40px;
+    width: 100%;
     margin-top: 20px;
     ul{
         li{
+            width: 20%;
             float: left;
             margin: 0 5px;
         }
