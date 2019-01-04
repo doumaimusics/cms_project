@@ -9,6 +9,8 @@ const shopcart = r => require.ensure([], () => r(require('../components/Shopcart
 const seach = r => require.ensure([], () => r(require('../components/Seach/Seach.vue')), 'seach'); // 搜索
 const newsList = r => require.ensure([], () => r(require('../components/News/NewsList.vue')), 'news');  // 新闻列表
 const newsDetail = r => require.ensure([], () => r(require('../components/News/NewsDetail.vue')), 'news');  // 新闻详情
+const photoList = r => require.ensure([], () => r(require('../components/Photo/PhotoList.vue')), 'photo');  // 图文列表
+const goodsList = r => require.ensure([], () => r(require('../components/Goods/GoodsList.vue')), 'goods');  // 商品列表
 
 Vue.use(Router);  // 注册全局组件 router-view  router-link 挂在在Vue.prototype.$router || $route,未来所有的组件中的this对象，就具备该属性，所有的this就是vue的子类对象
 
@@ -20,12 +22,14 @@ export default new Router({
       component: wxEntrance,
       children: [
         { path: '/', redirect:'/home' },
-        { name:'home', path:'/home', component:home, meta:{ requireAuth: false} },
-        { name:'member', path:'/member', component:member,meta:{ requireAuth: false } },
-        { name: 'shopcart', path: '/shopcart', component: shopcart, meta: { requireAuth: false } },
-        { name: 'seach', path: '/seach', component: seach, meta: { requireAuth: false } },   
-        { name: 'newsList', path: '/news/list', component: newsList, meta: {requireAuth: false}},
-        { name:'newsDetail', path: '/news/detail', component: newsDetail, meta: {requireAuth: false}}
+        { name:'home', path:'/home', component:home, meta:{ requireAuth: false}},
+        { name:'member', path:'/member', component:member,meta:{ requireAuth: false}},
+        { name:'shopcart', path: '/shopcart', component: shopcart, meta: { requireAuth: false}},
+        { name:'seach', path: '/seach', component: seach, meta: { requireAuth: false}},   
+        { name:'newsList', path: '/news/list', component: newsList, meta: {requireAuth: false}},
+        { name:'newsDetail', path: '/news/detail', component: newsDetail, meta: {requireAuth: false}},
+        { name:'photoList', path:'/photo/list/:categoryId', component: photoList, meta: {requireAuth: false}},
+        { name:'goodsList', path:'/goods/list', component: goodsList, meta: {requireAuth: false}},
       ]
     },
   ]

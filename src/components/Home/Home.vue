@@ -10,7 +10,7 @@
         <div class="grid clear">
             <my-ul>
                 <my-li v-for="(item,index) in listBg" :key="index">
-                    <router-link :to="{path:item.url}">
+                    <router-link :to="item.router">
                         <span :style="{background:'url('+item.bg+')'}"></span>
                         <p>{{item.text}}</p>
                     </router-link>
@@ -41,27 +41,50 @@ export default {
                 {
                    bg:require('../../assets/img/grit/icon_01.png'),
                    text:'新闻咨询',
-                   url:'/news/list'
+                   router:{
+                       name:'newsList'
+                   }
+                   
                 },
                 {
                    bg:require('../../assets/img/grit/icon_02.png'),
-                   text:'图文分享'
+                   text:'图文分享',
+                   router:{
+                       name:'photoList',
+                       params:{categoryId:0}
+                   }
                 },
                 {
                    bg:require('../../assets/img/grit/icon_03.png'),
-                   text:'商品展示'
+                   text:'商品展示',
+                   router:{
+                       name:'goodsList',
+                       query:{id:0}
+                   }
                 },
                 {
                    bg:require('../../assets/img/grit/icon_04.png'),
-                   text:'留言反馈'
+                   text:'留言反馈',
+                   router:{
+                       name:'photoLIst',
+                       
+                   }
                 },
                 {
                    bg:require('../../assets/img/grit/icon_05.png'),
-                   text:'搜索资讯'
+                   text:'搜索资讯',
+                   router:{
+                       name:'photoLIst',
+                       
+                   }
                 },
                 {
                    bg:require('../../assets/img/grit/icon_06.png'),
-                   text:'联系我们'
+                   text:'联系我们',
+                   router:{
+                       name:'photoLIst',
+                       
+                   }
                 },
 
            ]

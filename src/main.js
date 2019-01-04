@@ -1,14 +1,35 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-// import wx from './wx'
 import wxRouter from './router/wxRouter'
 
 // 配置axios
 import Axios from 'axios'
 // 配置公共url
 Axios.defaults.baseURL = "http://www.sinya.online/api/"
-Vue.prototype.$axios = Axios
+Vue.prototype.$axios = Axios;
+// 配置请求拦截器,显示loading图标
+Axios.interceptors.request.use(function (config) {
+  MintUI.Indicator.open({   // 发送请求操作
+    text:'玩命加载中。。。'
+  })
+  return config;
+},function(error){
+  MintUI.Indicator.open({   // 发送请求操作
+    text: '请求出现错误。。。'
+  })
+  return Promise.reject(error)
+})
+// 配置响应拦截器，关闭loading图标
+Axios.interceptors.response.use(function (response){
+  MintUI.Indicator.close();   // 请求成功关闭
+  return response;
+},function(error) {
+  MintUI.Indiceptors.open({
+    text:'请求不成功。。。'
+  })
+  return Promise.reject(error)
+})
 
 // 配置MintUI
 import MintUI from 'mint-ui';
