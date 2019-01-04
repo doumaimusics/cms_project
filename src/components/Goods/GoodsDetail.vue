@@ -14,7 +14,7 @@
                     销售价：<span>¥{{goodsInfo.sell_price}}</span>
                 </li>
                 <li class="number_li">
-                    购买数量：<span>-</span><span>1</span><span>+</span>
+                    购买数量：<span @click="substract">-</span><span>{{pickNum}}</span><span @click="add">+</span>
                 </li>
                 <li class="button_box">
                     <div class="left">立即购买</div>
@@ -36,25 +36,62 @@
                  <li>上架时间：{{goodsInfo.add_time | convertTime('YYYY-MM-DD')}}</li>
              </ul>
         </div>
+
+        <div class="product_info">
+            <ul>
+                <li>
+                    <mt-button type="primary" size="large" plain @click="showPhotoInfo">图文介绍</mt-button>
+                </li>
+
+                <li>
+                    <mt-button type="danger" size="large" plain @click="goodsComment">商品评论</mt-button>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <script>
 import navBar from '../Common/NavBar';
 import mySwipe from '../Common/mySwipe';
+import EventBus from '@/EventBus';
 export default {
     data(){
        return {
          isExist:false,   // 小球
-         goodsInfo:{}
+         goodsInfo:{},
+         pickNum:1
        }
     },
     methods:{
-        insertBall(){
+        insertBall(){   // 点击加入购物车，小球出现
             this.isExist = true;
         },
         afterEnter(){
-            this.isExist = false
+            this.isExist = false;   // 小球消失
+            EventBus.$emit('addShopcart',this.pickNum);  // 传递数据给购物车显示
+        },
+        substract(){   // 点击减号
+            if(this.pickNum <= 1) return;
+            this.pickNum --;
+        },
+        add(){   // 点击加号
+            if(this.goodsInfo.stock_quantity <= this.pickNum) return;
+            this.pickNum ++;
+        },
+        showPhotoInfo(){    // 跳转图文介绍
+            this.$router.push({
+                name:'photoInfo',
+                query:{id:this.$route.params.id}
+            })
+        },
+        goodsComment(){   // 商品评论
+            this.$router.push({
+                name:'goodsComment',
+                query:{
+                    id:this.$route.params.id
+                }
+            })
         }
     },
     created(){
@@ -166,6 +203,12 @@ export default {
         }
         .product_props{
             padding: 1.25rem;
+        }
+        .product_info{
+            padding: .625rem 1.25rem;
+            li{
+                margin-bottom: .625rem;
+            }
         }
     }
 </style>

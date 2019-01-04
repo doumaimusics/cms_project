@@ -10,7 +10,7 @@ import NewsDetail from '@/components/News/Detail';   // 新闻详情
 import PhotoList from '@/components/Photo/PhotoList';   // 图文分享
 import GoodsList from '@/components/Goods/GoodsList';  // 商品列表
 import goodsDetail from '@/components/Goods/GoodsDetail';  // 商品详情
-
+import GoodsComment from '@/components/Goods/GoodsComment'; // 商品评论
 Vue.use(Router); // 注册全局组件 router-view  router-link 挂在在Vue.prototype.$router || $route,未来所有的组件中的this对象，就具备该属性，所有的this就是vue的子类对象
 
 export default new Router({
@@ -62,6 +62,18 @@ export default new Router({
     path: '/goods/detail/:id',
     name: 'goodsDetail',
     component: goodsDetail
+  },
+  // 商品图文介绍
+  {
+    path:'/goods/photo/info',
+    name: 'photoInfo',
+    component: NewsDetail    // 和新闻详情用同一个页面
+  },
+  // 商品评论组件
+  {
+    path:'/goods/comment',
+    name: 'goodsComment',
+    component:GoodsComment
   }
 ]
 })
