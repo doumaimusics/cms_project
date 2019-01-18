@@ -52,8 +52,8 @@ export default {
           bg: require("../../assets/img/grit/icon_04.png"),
           text: "留言反馈",
           router: {
-            url: "photoList",
-            params: { categoryId: 0 }
+            name: "pigActiviy",
+            query:{id:1}
           }
         },
         {
