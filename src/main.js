@@ -42,6 +42,9 @@ import './assets/publicCss/public.css'
  // 引入公用过滤器
 import './common/publicFilter/publicFilte'
 
+// 引入vuex
+import store from './store'
+
 
 
 
@@ -55,10 +58,11 @@ const ua = navigator.userAgent.toLowerCase()
 if (/iphone|ipad|ipod/.test(ua) || /android/.test(ua)) {
   var router = wxRouter
   new Vue({
-    router
+    router,
+    store,  // 使用store vuex全家桶
   }).$mount('#start')
 } else {
-  const router = pcRouter
+  // const router = pcRouter
   new Vue({
     router
   }).$mount('#start')

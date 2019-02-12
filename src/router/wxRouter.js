@@ -11,6 +11,9 @@ const newsList = r => require.ensure([], () => r(require('../components/News/New
 const newsDetail = r => require.ensure([], () => r(require('../components/News/NewsDetail.vue')), 'news');  // 新闻详情
 const photoList = r => require.ensure([], () => r(require('../components/Photo/PhotoList.vue')), 'photo');  // 图文列表
 const goodsList = r => require.ensure([], () => r(require('../components/Goods/GoodsList.vue')), 'goods');  // 商品列表
+const supervise = r => require.ensure([], () => r(require('../components/activity/supervise/index.vue')), 'super');  // E委会过程总页面
+const enrol = r => require.ensure([], () => r(require('../components/activity/supervise/enrol.vue')), 'super')   // 入口页面
+
 
 Vue.use(Router);  // 注册全局组件 router-view  router-link 挂在在Vue.prototype.$router || $route,未来所有的组件中的this对象，就具备该属性，所有的this就是vue的子类对象
 
@@ -30,6 +33,11 @@ export default new Router({
         { name:'newsDetail', path: '/news/detail', component: newsDetail, meta: {requireAuth: false}},
         { name:'photoList', path:'/photo/list/:categoryId', component: photoList, meta: {requireAuth: false}},
         { name:'goodsList', path:'/goods/list', component: goodsList, meta: {requireAuth: false}},
+        { name:'supervise', path:'/supervise', component: supervise, 
+          children:[
+            { name:'enrol', path:'/supervise/enrol',component:enrol,meta:{requireAuth:false}}
+          ]
+        }
       ]
     },
   ]

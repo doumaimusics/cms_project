@@ -72,10 +72,9 @@ export default {
                 },
                 {
                    bg:require('../../assets/img/grit/icon_05.png'),
-                   text:'搜索资讯',
+                   text:'查看进度',
                    router:{
-                       name:'photoLIst',
-                       
+                       name:'enrol',
                    }
                 },
                 {
