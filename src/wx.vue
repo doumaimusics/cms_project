@@ -35,6 +35,16 @@ window.addEventListener('resize', init)
     watch:{
     }
   }
+
+
+  /* 
+  
+      vue 客户端渲染
+      history模式
+      
+  
+  
+  */
 </script>
 
 <style lang="scss">

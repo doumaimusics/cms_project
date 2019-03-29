@@ -1,7 +1,6 @@
 <template>
   <div class="goodsList">
     <nav-bar title="商品列表"></nav-bar>
-     <p v-if="isShow">1234</p>
 
      <ul>
         <li v-for="(val,index) in arrList" :key="index">
@@ -46,9 +45,21 @@ export default {
             arrList:'renderCollects'
         })
   },
+  methods: {
+    dataInit(){
+           let id = this.$route.query.id;
+           this.$axios.get('shop/goods/list/').then(res => {
+               console.log(res);
+              //  this.newsDetail = res.data.message[0];
+           }).catch(err => {
+               console.log("cw")
+           })
+       }
+  },
   mounted() {
   },
   created() {
+    this.dataInit()
   },
   watch: {
     $route(to,from){  // //跳转组件页面后，监听路由参数中对应的当前页面以及上一个页面

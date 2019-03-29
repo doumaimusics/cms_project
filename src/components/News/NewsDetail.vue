@@ -4,8 +4,8 @@
         <div class="content">
            <p class="title">{{newsDetail.title}}</p>
            <div class="time">
-               <span>添加时间：{{newsDetail.add_time |convertTime('YYYY年MM月DD日',2)}}</span>
-               <span>点击数：{{newsDetail.click}}</span>
+               <span>添加时间：{{newsDetail.dateAdd |convertTime('YYYY年MM月DD日',2)}}</span>
+               <span>点击数：{{newsDetail.views}}</span>
            </div>
            <div class="news_content" v-html="newsDetail.content"></div>
         </div>
@@ -23,9 +23,10 @@ export default {
    methods: {
        dataInit(){
            let id = this.$route.query.id;
-           this.$axios.get('getnew/'+id).then(res => {
+           console.log(id)
+           this.$axios.get('cms/news/detail'+'?id='+id).then(res => {
                console.log(res);
-               this.newsDetail = res.data.message[0];
+               this.newsDetail = res.data.data;
            }).catch(err => {
                console.log("cw")
            })

@@ -3,33 +3,36 @@
 import Vue from 'vue'
 import wxRouter from './router/wxRouter'
 
+
 // 配置axios
 import Axios from 'axios'
-// 配置公共url
-Axios.defaults.baseURL = "http://www.sinya.online/api/"
-Vue.prototype.$axios = Axios;
-// 配置请求拦截器,显示loading图标
-Axios.interceptors.request.use(function (config) {
-  MintUI.Indicator.open({   // 发送请求操作
-    text:'玩命加载中。。。'
+// 配置公共的uel
+Axios.defaults.baseURL = "https://api.it120.cc/wangapi/"
+Vue.prototype.$axios = Axios
+// 配置请求拦截器
+Axios.interceptors.request.use((config)=>{
+  MintUI.Indicator.open({
+    text:'玩命加载中。。。。'
   })
   return config;
-},function(error){
-  MintUI.Indicator.open({   // 发送请求操作
-    text: '请求出现错误。。。'
+},(error) => {
+  MintUI.Indicator.open({
+    text:'请求出错误'
   })
   return Promise.reject(error)
 })
-// 配置响应拦截器，关闭loading图标
-Axios.interceptors.response.use(function (response){
+// 配置响应拦截器
+Axios.interceptors.response.use((response) => {
   MintUI.Indicator.close();   // 请求成功关闭
   return response;
-},function(error) {
-  MintUI.Indiceptors.open({
+},(error) => {
+  MintUI.Indicator.open({
     text:'请求不成功。。。'
   })
   return Promise.reject(error)
 })
+
+
 
 // 配置MintUI
 import MintUI from 'mint-ui';

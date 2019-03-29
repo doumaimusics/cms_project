@@ -6,8 +6,8 @@
                 <li v-for="(item,index) in newsList" @click="goDetail(item.id)">
                     <span>{{item.title}}</span>
                     <div class="news-desc">
-                        <p class="p1">点击数：{{item.click}}</p>
-                        <p class="p2">发布时间：{{item.add_time}}</p>
+                        <p class="p1">点击数：{{item.views}}</p>
+                        <p class="p2">发布时间：{{item.dateAdd}}</p>
                     </div>
                     <div>{{item.zhaiyao}}</div>
                 </li>
@@ -26,8 +26,8 @@ export default {
     },
     methods: {
         newsInit(){
-            this.$axios.get('getnewslist').then( res => {
-               this.newsList = res.data.message;
+            this.$axios.get('cms/news/list').then( res => {
+               this.newsList = res.data.data;
             }).catch( err => {
                 console.log('出错了')
             })

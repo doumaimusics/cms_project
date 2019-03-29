@@ -2,10 +2,9 @@
     <div id="home">
         <mt-swipe :auto="4000">
             <mt-swipe-item v-for="(img,index) in imgs" :key="index">
-                  <img :src="img.img" alt="">
+                  <img :src="img.picUrl" alt="">
             </mt-swipe-item>
         </mt-swipe>
-
         <!-- 九宫格 -->
         <div class="grid clear">
             <my-ul>
@@ -28,15 +27,8 @@ import wxFooter from '../wxFooter';
 export default {
     data(){
         return{
-           imgs:[
-               {
-                   img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545820775451&di=2caf475debf3d6da05e0d88cb5d53fdb&imgtype=0&src=http%3A%2F%2Fimg03.tooopen.com%2Fuploadfile%2Fdowns%2Fimages%2F20110714%2Fsy_20110714135215645030.jpg'
-               },
-               {
-                   img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545820775451&di=e1dae4624bbbef3c2b7a85273278a901&imgtype=0&src=http%3A%2F%2Fpic1.nipic.com%2F2008-12-30%2F200812308231244_2.jpg'
-               }
-
-           ],   // 轮播图片
+            imgs:[],
+           
            listBg:[
                 {
                    bg:require('../../assets/img/grit/icon_01.png'),
@@ -90,10 +82,10 @@ export default {
         }
     },
     created(){
-        this.$axios.get('getlunbo')
+        this.$axios.get('banner/list')
         .then(res => {
-            // this.imgs = res.data.message;
-            // console.log(this.imgs)
+            console.log(res)
+            this.imgs = res.data.data;            
         })
         .catch(err => {
             console.log('轮播图获取异常')
@@ -115,6 +107,7 @@ export default {
             height: 200px;
             img{
                 width: 100%;
+                height: 100%;
             }
         }
         .grid{

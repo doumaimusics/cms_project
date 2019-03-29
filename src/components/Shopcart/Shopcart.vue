@@ -17,13 +17,13 @@ export default {
            msg:'',
            item:{
                id:'01',
-               productName:'苹果',
-               price:'1.6元/斤'
+               productName:'小米6',
+               price:'2500元'
            }
        }
     },
     mounted() {
-        this.$store.dispatch('footerStatus/hideFooter')
+        // this.$store.dispatch('footerStatus/hideFooter')
     },
     methods: {
         ...mapActions('collection',[   // //collection是指modules文件夹下的collection.js
@@ -50,3 +50,4 @@ export default {
         }
     }
 </style>
+

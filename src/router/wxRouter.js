@@ -3,6 +3,11 @@ import Router from 'vue-router'
 
 import wxEntrance from '@/wx.vue'
 
+/* 
+import Home from '@/components/Home/Home';
+import Member from '@/components/Member/Member';
+*/
+
 const home = r => require.ensure([], () => r(require('../components/Home/Home.vue')), 'home') //首页
 const member = r => require.ensure([], () => r(require('../components/Member/Member.vue')), 'member');  // 会员
 const shopcart = r => require.ensure([], () => r(require('../components/Shopcart/Shopcart.vue')), 'shopcart'); // 购物车
@@ -22,6 +27,7 @@ export default new Router({
   base:__dirname,
   routes: [{
       path: '/',
+      redirect: '/home',
       component: wxEntrance,
       children: [
         { path: '/', redirect:'/home' },
