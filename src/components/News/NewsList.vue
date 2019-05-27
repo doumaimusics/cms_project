@@ -27,6 +27,7 @@ export default {
     methods: {
         newsInit(){
             this.$axios.get('cms/news/list').then( res => {
+                console.log(res)
                this.newsList = res.data.data;
             }).catch( err => {
                 console.log('出错了')

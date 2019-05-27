@@ -43,7 +43,7 @@ export default {
                    text:'图文分享',
                    router:{
                        name:'photoList',
-                       params:{categoryId:0}
+                    //    params:{categoryId:0}
                    }
                 },
                 {
@@ -58,8 +58,8 @@ export default {
                    bg:require('../../assets/img/grit/icon_04.png'),
                    text:'留言反馈',
                    router:{
-                       name:'photoLIst',
-                       
+                       name:'photoList',
+                    //    params:{categoryId:1}
                    }
                 },
                 {
@@ -73,8 +73,8 @@ export default {
                    bg:require('../../assets/img/grit/icon_06.png'),
                    text:'联系我们',
                    router:{
-                       name:'photoLIst',
-                       
+                       name:'photoList',
+                    //    params:{categoryId:2}
                    }
                 },
 

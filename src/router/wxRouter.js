@@ -31,17 +31,17 @@ export default new Router({
       component: wxEntrance,
       children: [
         { path: '/', redirect:'/home' },
-        { name:'home', path:'/home', component:home, meta:{ requireAuth: false}},
-        { name:'member', path:'/member', component:member,meta:{ requireAuth: false}},
-        { name:'shopcart', path: '/shopcart', component: shopcart, meta: { requireAuth: false}},
-        { name:'seach', path: '/seach', component: seach, meta: { requireAuth: false}},   
-        { name:'newsList', path: '/news/list', component: newsList, meta: {requireAuth: false}},
-        { name:'newsDetail', path: '/news/detail', component: newsDetail, meta: {requireAuth: false}},
-        { name:'photoList', path:'/photo/list/:categoryId', component: photoList, meta: {requireAuth: false}},
-        { name:'goodsList', path:'/goods/list', component: goodsList, meta: {requireAuth: false}},
+        { name:'home', path:'/home', component:home, meta:{ requireAuth: false, keepAlive: false }},
+        { name:'member', path:'/member', component:member,meta:{ requireAuth: false, keepAlive: true }},
+        { name:'shopcart', path: '/shopcart', component: shopcart, meta: { requireAuth: false, keepAlive: false }},
+        { name:'seach', path: '/seach', component: seach, meta: { requireAuth: false, keepAlive: false }},   
+        { name:'newsList', path: '/news/list', component: newsList, meta: {requireAuth: false, keepAlive: false }},
+        { name:'newsDetail', path: '/news/detail', component: newsDetail, meta: {requireAuth: false, keepAlive: false }},
+        { name:'photoList', path:'/photo/list', component: photoList, meta: {requireAuth: false, keepAlive: false }},
+        { name:'goodsList', path:'/goods/list', component: goodsList, meta: {requireAuth: false, keepAlive: false }},
         { name:'supervise', path:'/supervise', component: supervise, 
           children:[
-            { name:'enrol', path:'/supervise/enrol',component:enrol,meta:{requireAuth:false}}
+            { name:'enrol', path:'/supervise/enrol',component:enrol,meta:{requireAuth:false, keepAlive: false }}
           ]
         }
       ]
